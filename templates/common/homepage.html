@@ -1,0 +1,41 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main>
+        <div class="container">
+            <div class="col-9">
+                <h1>Find the Best Trainer for You!</h1>
+                <p>Search through a list of certified trainers based on your needs and location.</p>
+
+                <!-- Search Bar -->
+                <div class="searchbar">
+                    <form method="GET" action="#">
+                        <input type="text" name="query" placeholder="Search for trainers..." required>
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+
+                <h2>Featured Trainers</h2>
+                <div class="trainer-list">
+                    {% for trainer in trainers %}
+                    <div class="trainer-card">
+                        <div class="trainer-img">
+                            <img src="{{ trainer.profile_picture.url }}" alt="Trainer Picture">
+                        </div>
+                        <div class="trainer-info">
+                            <h3>{{ trainer.name }}</h3>
+                            <p>{{ trainer.specialty }}</p>
+                            <a href="/trainer/{{ trainer.id }}">View Profile</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+{% endblock %}

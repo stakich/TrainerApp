@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from TrainerApp.accounts.models import UserProfile
+from TrainerApp.workouts.models import Workout
 
 UserModel = get_user_model()
 
@@ -30,9 +31,9 @@ class Comment(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['date_time_of_publication']),
+            models.Index(fields=['created_at']),
         ]
-        ordering = ['-date_time_of_publication']
+        ordering = ['-created_at']
 
 
 class Like(models.Model):
