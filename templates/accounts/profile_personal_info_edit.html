@@ -1,0 +1,26 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="edit-profile-container-custom">
+    <h1 class="edit-profile-heading-custom">Edit Profile</h1>
+    <form method="POST" class="edit-profile-form-custom">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="edit-profile-form-group-custom">
+            <label for="{{ form.bio.id_for_label }}" class="edit-profile-label-custom">Email</label>
+            {{ form.bio }}
+            <small class="edit-profile-error-custom">{{ form.bio.errors }}</small>
+        </div>
+
+        <div class="edit-profile-form-group-custom">
+            <label for="{{ form.location.id_for_label }}" class="edit-profile-label-custom">Username</label>
+            {{ form.location }}
+            <small class="edit-profile-error-custom">{{ form.location.errors }}</small>
+        </div>
+
+        <button type="submit" class="edit-profile-btn-custom edit-profile-btn-primary-custom">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

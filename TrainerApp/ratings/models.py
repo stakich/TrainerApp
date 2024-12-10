@@ -10,3 +10,6 @@ class Rating(models.Model):
     trainer = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     rating = models.IntegerField(choices=RatingChoices.choices, default=RatingChoices.RATING_1)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'trainer')

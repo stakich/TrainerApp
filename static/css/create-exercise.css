@@ -1,0 +1,90 @@
+.exercise-form-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.exercise-form-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.create-exercise-container p {
+    text-align: center;
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.exercise-form-container .form-row {
+    margin-bottom: 20px;
+}
+
+.exercise-form-container .form-row input,
+.exercise-form-container .form-row select,
+.exercise-form-container .form-row textarea {
+    width: 100%; /* Ensure inputs take up full width */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.exercise-form-container .form-row input:focus,
+.exercise-form-container .form-row select:focus,
+.exercise-form-container .form-row textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+    width: 100%;
+}
+
+.exercise-form-container button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Full width for the submit button */
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.exercise-form-container button:hover {
+    background-color: #2980b9;
+    transform: scale(1.02);
+}
+
+.exercise-form-container button:active {
+    background-color: #1e6f9f;
+}
+
+.exercise-form-container .form-row .errorlist {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.exercise-form-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 1.1rem;
+}

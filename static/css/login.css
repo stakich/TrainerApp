@@ -46,7 +46,6 @@ form button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 20px;
 }
 
 form button:hover {
@@ -76,4 +75,8 @@ form button:hover {
     color: red;
     font-size: 14px;
     margin-bottom: 10px;
+}
+
+form button a {
+    margin-top: 0;
 }

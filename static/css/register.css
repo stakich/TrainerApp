@@ -1,20 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-/* Body styling */
-body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-}
 
 /* Container for login/register section */
 .login-register-div {

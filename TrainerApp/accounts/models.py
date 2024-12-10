@@ -5,14 +5,16 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin
 # Create your models here.
 
 class AppUser(AbstractUser, PermissionsMixin):
-    is_trainer = models.BooleanField(default=False)
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=150, blank=False, null=False)
+    last_name = models.CharField(max_length=150, blank=False, null=False)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='appuser_groups',  # Use a custom related_name to avoid conflict
+        related_name='appuser_groups',
         blank=True,
         help_text='The groups this user belongs to.',
         verbose_name='groups'
@@ -20,7 +22,7 @@ class AppUser(AbstractUser, PermissionsMixin):
 
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='appuser_permissions',  # Use a custom related_name to avoid conflict
+        related_name='appuser_permissions',
         blank=True,
         help_text='Specific permissions for this user.',
         verbose_name='user permissions'
@@ -35,3 +37,5 @@ class UserProfile(models.Model):
     experience_years = models.PositiveIntegerField(default=0, null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
     is_approved = models.BooleanField(default=False, null=True, blank=True)
+    is_trainer = models.BooleanField(default=False)
+

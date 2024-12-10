@@ -2,13 +2,13 @@ from django.db import models
 
 
 class DifficultyChoices(models.TextChoices):
-    BEGINNER = 'beginner', 'Beginner'
-    INTERMEDIATE = 'intermediate', 'Intermediate'
-    ADVANCED = 'advanced', 'Advanced'
-    EXPERT = 'expert', 'Expert'
+    BEGINNER = 'Beginner', 'Beginner'
+    INTERMEDIATE = 'Intermediate', 'Intermediate'
+    ADVANCED = 'Advanced', 'Advanced'
+    EXPERT = 'Expert', 'Expert'
 
 
 class WorkoutType(models.TextChoices):
-    STRENGTH = 'strength', 'Strength'
-    CARDIO = 'cardio', 'Cardio'
-    FLEXIBILITY = 'flexibility', 'Flexibility'
+    STRENGTH = 'Strength', 'Strength'
+    CARDIO = 'Cardio', 'Cardio'
+    FLEXIBILITY = 'Flexibility', 'Flexibility'
