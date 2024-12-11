@@ -27,16 +27,6 @@ class AppUserCreationForm(UserCreationForm):
         model = UserModel
         fields = ['email', 'username', 'first_name', 'last_name']
 
-    def __init__(self, *args, **kwargs):
-        super(AppUserCreationForm, self).__init__(*args, **kwargs)
-        # Add placeholders to fields
-        self.fields['email'].widget.attrs.update({'placeholder': 'Enter your email'})
-        self.fields['username'].widget.attrs.update({'placeholder': 'Enter your username'})
-        self.fields['password1'].widget.attrs.update({'placeholder': 'Enter a strong password'})
-        self.fields['password2'].widget.attrs.update({'placeholder': 'Confirm your password'})
-        self.fields['first_name'].widget.attrs.update({'placeholder': 'Enter Your First Name'})
-        self.fields['last_name'].widget.attrs.update({'placeholder': 'Enter Your Last Name'})
-
 
 class UserEditForm(forms.ModelForm):
 
@@ -48,4 +38,26 @@ class UserEditForm(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['bio', 'location']
+        fields = ['bio', 'location', 'specialization', 'experience_years', 'profile_picture']
+
+    def clean_experience_years(self):
+        experience_years = self.cleaned_data['experience_years']
+        if experience_years is None or experience_years < 0:
+            raise forms.ValidationError('Invalid number input. Cannot be negative or empty')
+        return experience_years
+
+
+class UserDeleteForm(forms.ModelForm):
+    confirm = forms.BooleanField(required=True, label="I confirm the deletion of this user.")
+
+    class Meta:
+        model = UserModel
+        fields = []
+
+    def clean(self):
+        cleaned_data = super().clean()
+        confirm = cleaned_data.get("confirm")
+        if not confirm:
+            raise forms.ValidationError("You must confirm the deletion.")
+        return cleaned_data
+    

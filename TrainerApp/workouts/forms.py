@@ -14,6 +14,18 @@ class ExerciseForm(forms.ModelForm):
             raise forms.ValidationError("Exercise with this name already exists.")
         return name
 
+    def clean_sets(self):
+        sets = self.cleaned_data['sets']
+        if sets <= 0:
+            raise forms.ValidationError("Sets must be a positive number.")
+        return sets
+
+    def clean_reps(self):
+        reps = self.cleaned_data['reps']
+        if reps <= 0:
+            raise forms.ValidationError("Reps must be a positive number.")
+        return reps
+
 
 class WorkoutBaseForm(forms.ModelForm):
     class Meta:

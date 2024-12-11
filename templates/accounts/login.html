@@ -5,7 +5,6 @@
         <div class="login-register-box">
             <h1>TrainerApp</h1>
 
-            <!-- Start Login Form-->
             <form method="post">
                 {% csrf_token %}
 
@@ -13,10 +12,8 @@
                 {{ form.username}}
                 {{ form.password}}
 
-                <!-- Login Button-->
                 <button type="submit">Log in</button>
             </form>
-            <!-- End Login Form -->
 
         </div>
         <div class="second-option">

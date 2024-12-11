@@ -13,8 +13,6 @@
         {% else %}
             <h1 class="main-text">{{ object.first_name }}</h1>
         {% endif %}
-    {% else %}
-        <h1 class="main-text">Guest Profile</h1>
     {% endif %}
 
     <div class="trainer-profile" data-trainer-id="{{ object.userprofile.id }}" data-user-id="{{ request.user.pk }}">
@@ -42,7 +40,7 @@
                             <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}" alt="edit button"/>
                         </a>
 
-                        <a href="#">
+                        <a href="{% url 'profile-delete' request.user.pk %}">
                             <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button"/>
                         </a>
                     {% endif %}
@@ -53,7 +51,7 @@
                 {% if request.user.pk != object.pk %}
                     <div class="favorite-container">
                         <button class="favorite-btn" data-trainer-id="{{ object.userprofile.id }}" id="favorite-btn">
-                            {% if is_favorited %}
+                                {% if is_favorited %}
                                 Already in Favorites
                             {% else %}
                                 Add to Favorites
@@ -79,7 +77,7 @@
         </div>
 
         {% if object.userprofile.is_trainer %}
-            <h2>Workouts</h2>
+            <h2>My Workouts</h2>
             {% if object.userprofile.workouts.count > 0 %}
                 <ul>
                     {% for workout in object.userprofile.workouts.all %}
@@ -97,6 +95,8 @@
                                 <a href="{% url 'workout-edit' workout.pk %}" class="btn btn-edit-workout">Edit</a>
                             {% endif %}
 
+
+                            {% if request.user.is_authenticated and request.user.pk != object.pk %}
                             <button class="btn-like-workout" data-workout-id="{{ workout.pk }}"  data-liked="{{ workout|user_liked_workout:request.user }}">
                                 {% if workout|user_liked_workout:request.user %}
                                     <svg class="heart-icon" width="24" height="24" viewBox="0 0 24 24" fill="red" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
@@ -108,6 +108,7 @@
                                     </svg>
                                 {% endif %}
                             </button>
+                            {% endif %}
 
                             {% if request.user.is_authenticated and request.user.pk == object.pk %}
                                 <form method="POST" action="{% url 'workout-delete' workout.pk %}" style="display:inline;">

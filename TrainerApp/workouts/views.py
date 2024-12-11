@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from TrainerApp.accounts.models import UserProfile
 from django.views.generic.list import ListView
 from django.db.models import Count
+from TrainerApp.common.models import Like
 
 
 class WorkoutCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -39,7 +40,7 @@ class WorkoutEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'workouts/edit_workout.html'
 
     def get_success_url(self):
-        return reverse_lazy('workout-detail', kwargs={'pk': self.object.id})
+        return reverse_lazy('workout-details', kwargs={'pk': self.object.id})
 
     def test_func(self):
         workout = self.get_object()
@@ -79,6 +80,16 @@ class PopularWorkoutsView(ListView):
     model = Workout
     template_name = 'workouts/popular_workouts.html'
     context_object_name = 'workouts'
+    paginate_by = 2
 
     def get_queryset(self):
         return Workout.objects.annotate(like_count=Count('like')).order_by('-like_count')
+
+
+class LikedWorkoutsView(LoginRequiredMixin, ListView):
+    model = Like
+    template_name = 'workouts/liked_workouts.html'
+    context_object_name = 'likes'
+
+    def get_queryset(self):
+        return Like.objects.filter(user=self.request.user).select_related('to_workout')

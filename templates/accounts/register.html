@@ -1,41 +1,38 @@
 {% extends 'common/base.html' %}
+{% load form_tags %}
 
 {% block content %}
   <div class="login-register-div">
         <div class="login-register-box">
             <h1>TrainerApp</h1>
 
-            <!-- Start Register Form -->
             <form method="post">
                 {% csrf_token %}
 
-                {{ form.username}}
-                {{ form.username.errors}}
+                {{ form.username|add_placeholder:"Enter your username" }}
+                {{ form.username.errors }}
 
-                {{ form.first_name}}
-                {{ form.first_name.errors}}
+                {{ form.first_name|add_placeholder:"Enter your first name" }}
+                {{ form.first_name.errors }}
 
-                {{ form.last_name}}
-                {{ form.last_name.errors}}
+                {{ form.last_name|add_placeholder:"Enter your last name" }}
+                {{ form.last_name.errors }}
 
-                {{ form.email}}
-                {{ form.email.errors}}
+                {{ form.email|add_placeholder:"Enter your email address" }}
+                {{ form.email.errors }}
 
-                {{ form.password1}}
-                {{ form.password1.errors}}
+                {{ form.password1|add_placeholder:"Enter your password" }}
+                {{ form.password1.errors }}
 
-                {{ form.password2}}
-                {{ form.password2.errors}}
+                {{ form.password2|add_placeholder:"Confirm your password" }}
+                {{ form.password2.errors }}
 
-                <!-- Register Button -->
                 <button type="submit">Register</button>
             </form>
-            <!-- End Register Form -->
 
         </div>
         <div class="second-option">
 
-            <!-- Link to Login Page -->
             <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
         </div>
     </div>

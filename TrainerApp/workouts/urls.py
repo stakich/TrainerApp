@@ -8,4 +8,6 @@ urlpatterns = [
     path('delete/<int:pk>/', views.WorkoutDeleteView.as_view(), name='workout-delete'),
     path('edit/<int:pk>/', views.WorkoutEditView.as_view(), name='workout-edit'),
     path('popular-workouts/', views.PopularWorkoutsView.as_view(), name='popular-workouts'),
+    path('liked-workouts/', views.LikedWorkoutsView.as_view(), name='liked-workouts'),
+
 ]
