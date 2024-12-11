@@ -1,0 +1,1 @@
+For convenience instead of using POSTGRE for the database, you can go to settings.py and change to using sql lite. Before starting the project make sure to download the requirements using pip install -r requirements.txt and apply migrations
