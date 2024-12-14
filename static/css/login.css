@@ -1,0 +1,82 @@
+.login-register-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Box for the login form */
+.login-register-box {
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Title for the form */
+.login-register-box h1 {
+    font-size: 2rem;
+    color: #0044cc;
+    margin-bottom: 20px;
+}
+
+/* Form inputs */
+form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Login Button */
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #003399;
+}
+
+/* Second option: Register link */
+.second-option {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+.second-option a {
+    color: #0044cc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.second-option a:hover {
+    color: #ffcc00;
+}
+
+/* Error Messages Styling */
+.form-errors {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+form button a {
+    margin-top: 0;
+}

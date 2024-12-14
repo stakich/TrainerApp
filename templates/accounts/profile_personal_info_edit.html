@@ -1,0 +1,52 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="edit-profile-container-custom">
+    {% if not object.is_trainer and object.is_approved is None %}
+        <h1 class="edit-profile-heading-custom">Edit Profile</h1>
+    {% else %}
+        <h1 class="edit-profile-heading-custom">Edit Profile</h1>
+    {% endif %}
+
+    <form method="POST" class="edit-profile-form-custom">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="edit-profile-form-group-custom">
+            <label for="{{ form.bio.id_for_label }}" class="edit-profile-label-custom">Bio</label>
+            {{ form.bio }}
+            <small class="edit-profile-error-custom">{{ form.bio.errors }}</small>
+        </div>
+
+        <div class="edit-profile-form-group-custom">
+            <label for="{{ form.location.id_for_label }}" class="edit-profile-label-custom">Location</label>
+            {{ form.location }}
+            <small class="edit-profile-error-custom">{{ form.location.errors }}</small>
+        </div>
+
+        <div class="edit-profile-form-group-custom">
+            <label for="{{ form.profile_picture.id_for_label }}" class="edit-profile-label-custom">Profile Picture (URL)</label>
+            {{ form.profile_picture }}
+            <small class="edit-profile-error-custom">{{ form.profile_picture.errors }}</small>
+        </div>
+
+        {% if not object.is_trainer and object.is_approved is None or object.is_trainer %}
+        <div class="edit-profile-form-group-custom">
+            <label for="{{ form.specialization.id_for_label }}" class="edit-profile-label-custom">Specialization</label>
+            {{ form.specialization }}
+            <small class="edit-profile-error-custom">{{ form.specialization.errors }}</small>
+        </div>
+
+        <div class="edit-profile-form-group-custom">
+            <label for="{{ form.experience_years.id_for_label }}" class="edit-profile-label-custom">Years of Experience</label>
+            {{ form.experience_years }}
+            <small class="edit-profile-error-custom">{{ form.experience_years.errors }}</small>
+        </div>
+        {% endif %}
+
+
+        <button type="submit" class="edit-profile-btn-custom edit-profile-btn-primary-custom">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

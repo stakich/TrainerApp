@@ -1,0 +1,51 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="favorited-trainers-container">
+    <h1 class="favorited-trainers-title">Your Favorite Trainers</h1>
+
+    {% if favorites %}
+        <div class="favorited-trainers-grid">
+            {% for favorite in favorites %}
+                <div class="trainer-card">
+                {% if favorite.trainer.profile_picture %}
+                    <div class="trainer-image" style="background-image: url('{{ favorite.trainer.profile_picture }}');"></div>
+                {% else %}
+                    <div class="trainer-image" style="background-image: url('{% static 'images/download.png' %}');"></div>
+                {% endif %}
+                    <h2 class="trainer-name">{{ favorite.trainer.name }}</h2>
+                    <p class="trainer-specialization">{{ favorite.trainer.specialization }}</p>
+                    <a href="{% url 'profile-details' favorite.trainer.user.pk %}" class="view-trainer-button">View Profile</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-favorited-trainers-message">You haven't favorited any trainers yet.</p>
+    {% endif %}
+    
+    <div class="pagination">
+            {% if is_paginated %}
+            <ul class="pagination-list">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page=1{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">First</a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Previous</a></li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <li><span class="current-page">{{ num }}</span></li>
+                    {% else %}
+                        {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+                            <li><a href="?page={{ num }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Next</a></li>
+                    <li><a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Last</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+</div>
+{% endblock %}

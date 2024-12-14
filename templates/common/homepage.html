@@ -1,0 +1,68 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="homepage-title">
+            <h1>Find the Best Trainer for You!</h1>
+            <p>Search through a list of certified trainers based on your needs and location.</p>
+        </div>
+
+        <div class="searchbar">
+            <form>
+                {{ searchform }}
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <h2>Featured Trainers</h2>
+        <div class="trainer-list">
+            {% if all_trainers %}
+                {% for trainer in all_trainers %}
+                <div class="trainer-card">
+                    <div class="trainer-img">
+                        {% if trainer.profile_picture %}
+                        <img src="{{ trainer.profile_picture }}" alt="Trainer Picture">
+                        {% else %}
+                        <img src="{% static 'images/download.png' %}" alt="Trainer Picture">
+                        {% endif %}
+                    </div>
+                    <div class="trainer-info">
+                        <h3>{{ trainer.user.first_name }} {{ trainer.user.last_name }}</h3>
+                        <p>{{ trainer.specialization }}</p>
+                        <a href="{% url 'profile-details' trainer.user.pk %}">View Profile</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No trainers found matching your search criteria.</p>
+            {% endif %}
+        </div>
+
+        <div class="pagination">
+            {% if is_paginated %}
+            <ul class="pagination-list">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page=1{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">First</a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Previous</a></li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <li><span class="current-page">{{ num }}</span></li>
+                    {% else %}
+                        {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+                            <li><a href="?page={{ num }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Next</a></li>
+                    <li><a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Last</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %}

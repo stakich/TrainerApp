@@ -1,0 +1,10 @@
+@import './home.css';
+@import './login.css';
+@import './register.css';
+@import './trainer-details.css';
+@import 'workouts.css';
+@import './create-exercise.css';
+@import './favorite-trainers.css';
+@import './approve_trainers.css';
+@import './account_deletion.css';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');

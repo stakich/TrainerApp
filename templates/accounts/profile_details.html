@@ -1,0 +1,145 @@
+{% extends 'common/base.html' %}
+
+{% load static %}
+{% load my_tags %}
+
+
+{% block content %}
+
+<div class="container">
+    {% if request.user.is_authenticated %}
+        {% if request.user.pk == object.pk %}
+            <h1 class="main-text">My Profile</h1>
+        {% else %}
+            <h1 class="main-text">{{ object.first_name }}</h1>
+        {% endif %}
+    {% endif %}
+
+    <div class="trainer-profile" data-trainer-id="{{ object.userprofile.id }}" data-user-id="{{ request.user.pk }}">
+        <div class="profile-header">
+            <div class="profile-content">
+                {% if object.userprofile.profile_picture %}
+                    <img src="{{ object.userprofile.profile_picture }}" alt="{{ object.username }}'s Profile Picture" class="profile-picture">
+                {% else %}
+                    <img src="{% static 'images/download.png' %}" alt="Default Profile Picture" class="profile-picture">
+                {% endif %}
+
+                <div class="profile-info">
+                    <h2>{{ object.first_name }} {{ object.last_name }}</h2>
+                    <p><strong>Email:</strong> {{ object.email }}</p>
+                    <p><strong>Username:</strong> {{ object.username }}</p>
+
+                    {% if object.userprofile.is_trainer %}
+                        <p><strong>Specialization:</strong> {{ object.userprofile.specialization }}</p>
+                        <p><strong>Experience:</strong> {{ object.userprofile.experience_years }} years</p>
+                    {% endif %}
+                    <p><strong>Location:</strong> {{ object.userprofile.location }}</p>
+
+                    {% if request.user.is_authenticated and request.user.pk == object.pk %}
+                        <a href="{% url 'profile-edit' request.user.pk %}">
+                            <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}" alt="edit button"/>
+                        </a>
+
+                        <a href="{% url 'profile-delete' request.user.pk %}">
+                            <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button"/>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="icon-buttons">
+                {% if request.user.pk != object.pk %}
+                    <div class="favorite-container">
+                        <button class="favorite-btn" data-trainer-id="{{ object.userprofile.id }}" id="favorite-btn">
+                                {% if is_favorited %}
+                                Already in Favorites
+                            {% else %}
+                                Add to Favorites
+                            {% endif %}
+                        </button>
+                    </div>
+
+                    <div class="rating" id="rating">
+                        <i class="fa fa-star" data-value="5" id="star-5"></i>
+                        <i class="fa fa-star" data-value="4" id="star-4"></i>
+                        <i class="fa fa-star" data-value="3" id="star-3"></i>
+                        <i class="fa fa-star" data-value="2" id="star-2"></i>
+                        <i class="fa fa-star" data-value="1" id="star-1"></i>
+                    </div>
+                {% endif %}
+
+                {% if request.user.is_authenticated and request.user.pk == object.pk %}
+                    <a href="{% url 'info-edit' request.user.userprofile.pk %}" class="edit-profile-button-custom">
+                        Edit Profile
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if object.userprofile.is_trainer %}
+            <h2>My Workouts</h2>
+            {% if object.userprofile.workouts.count > 0 %}
+                <ul>
+                    {% for workout in object.userprofile.workouts.all %}
+                        <li class="workout-container">
+                            <h3>{{ workout.title }}</h3>
+                            <p>{{ workout.description|truncatechars:100 }}</p>
+                            <p><strong>Difficulty:</strong> {{ workout.difficulty }}</p>
+                            <p><strong>Category:</strong> {{ workout.category }}</p>
+                            <a href="{% url 'workout-details' workout.pk %}">View Details</a>
+
+
+
+
+                            {% if request.user.is_authenticated and request.user.pk == object.pk %}
+                                <a href="{% url 'workout-edit' workout.pk %}" class="btn btn-edit-workout">Edit</a>
+                            {% endif %}
+
+
+                            {% if request.user.is_authenticated and request.user.pk != object.pk %}
+                            <button class="btn-like-workout" data-workout-id="{{ workout.pk }}"  data-liked="{{ workout|user_liked_workout:request.user }}">
+                                {% if workout|user_liked_workout:request.user %}
+                                    <svg class="heart-icon" width="24" height="24" viewBox="0 0 24 24" fill="red" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20.84 4.61C20.3297 4.0995 19.7225 3.69031 19.05 3.39999C18.3775 3.10967 17.6524 2.94464 16.92 2.9114C16.1877 2.87817 15.4574 2.97764 14.76 3.20512C14.0626 3.43259 13.41 3.78484 12.84 4.24L12 5.07L11.16 4.24C9.94999 3.20897 8.34807 2.68534 6.72 2.87999C5.09194 3.07464 3.57 3.97862 2.55 5.40999C1.53 6.84136 1.14587 8.67973 1.48 10.43C1.81413 12.1803 2.84845 13.7197 4.38 14.73L12 21.35L19.62 14.73C21.1515 13.7197 22.1859 12.1803 22.52 10.43C22.8541 8.67973 22.47 6.84136 21.45 5.40999C20.9858 4.78754 20.4079 4.2759 19.76 3.89999C19.6818 3.86179 19.6 3.8263 19.52 3.79999"/>
+                                    </svg>
+                                {% else %}
+                                    <svg class="heart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20.84 4.61C20.3297 4.0995 19.7225 3.69031 19.05 3.39999C18.3775 3.10967 17.6524 2.94464 16.92 2.9114C16.1877 2.87817 15.4574 2.97764 14.76 3.20512C14.0626 3.43259 13.41 3.78484 12.84 4.24L12 5.07L11.16 4.24C9.94999 3.20897 8.34807 2.68534 6.72 2.87999C5.09194 3.07464 3.57 3.97862 2.55 5.40999C1.53 6.84136 1.14587 8.67973 1.48 10.43C1.81413 12.1803 2.84845 13.7197 4.38 14.73L12 21.35L19.62 14.73C21.1515 13.7197 22.1859 12.1803 22.52 10.43C22.8541 8.67973 22.47 6.84136 21.45 5.40999C20.9858 4.78754 20.4079 4.2759 19.76 3.89999C19.6818 3.86179 19.6 3.8263 19.52 3.79999"/>
+                                    </svg>
+                                {% endif %}
+                            </button>
+                            {% endif %}
+
+                            {% if request.user.is_authenticated and request.user.pk == object.pk %}
+                                <form method="POST" action="{% url 'workout-delete' workout.pk %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-delete-workout">Delete</button>
+                                </form>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No workouts available.</p>
+            {% endif %}
+            
+            {% if request.user.is_authenticated and request.user.pk == object.pk %}
+            <div class="create-workout-btn">
+                <a href="{% url 'create-workout' %}" class="btn btn-create">Create New Workout</a>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <div class="bio">
+            <h3>About Me</h3>
+            <p>{{ object.userprofile.bio }}</p>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="{% static 'js/profile.js' %}"></script>
+<script src="{% static 'js/likeHandler.js' %}"></script>
+
+{% endblock %}

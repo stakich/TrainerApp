@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="create-workout-container">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+
+            <div class="add-exercise">
+                <p>Don't see the exercise you want for your workout?</p>
+                <a href="{% url 'create-exercise' %}" class="add-exercise-btn">Add Exercise</a>
+            </div>
+
+            <button type="submit">Save Workout</button>
+        </form>
+    </div>
+{% endblock %}

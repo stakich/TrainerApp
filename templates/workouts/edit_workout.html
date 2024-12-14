@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="edit-workout-container">
+    <form method="post" class="edit-workout-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="edit-workout-save-button">Save</button>
+    </form>
+</div>
+{% endblock %}

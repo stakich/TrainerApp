@@ -1,0 +1,40 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="approve-trainers-container">
+    <h1 class="approve-trainers-title">Approve Trainers</h1>
+
+    {% if trainers %}
+        <table class="approve-trainers-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Specialization</th>
+                    <th>Years of experience</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trainer in trainer_approvals %}
+                    <tr>
+                        <td>{{ trainer.user.username }}</td>
+                        <td>{{ trainer.specialization }}</td>
+                        <td>{{ trainer.experience_years }}</td>
+                        <td>
+                            <form method="post" class="approve-trainer-actions">
+                                {% csrf_token %}
+                                <input type="hidden" name="trainer_id" value="{{ trainer.id }}">
+                                <button type="submit" name="action" value="approve" class="approve-btn btn-accept">Approve</button>
+                                <button type="submit" name="action" value="reject" class="approve-btn btn-reject">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-trainers-message">There are no trainers awaiting approval.</p>
+    {% endif %}
+</div>
+{% endblock %}

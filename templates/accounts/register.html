@@ -1,0 +1,39 @@
+{% extends 'common/base.html' %}
+{% load form_tags %}
+
+{% block content %}
+  <div class="login-register-div">
+        <div class="login-register-box">
+            <h1>TrainerApp</h1>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {{ form.username|add_placeholder:"Enter your username" }}
+                {{ form.username.errors }}
+
+                {{ form.first_name|add_placeholder:"Enter your first name" }}
+                {{ form.first_name.errors }}
+
+                {{ form.last_name|add_placeholder:"Enter your last name" }}
+                {{ form.last_name.errors }}
+
+                {{ form.email|add_placeholder:"Enter your email address" }}
+                {{ form.email.errors }}
+
+                {{ form.password1|add_placeholder:"Enter your password" }}
+                {{ form.password1.errors }}
+
+                {{ form.password2|add_placeholder:"Confirm your password" }}
+                {{ form.password2.errors }}
+
+                <button type="submit">Register</button>
+            </form>
+
+        </div>
+        <div class="second-option">
+
+            <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
+        </div>
+    </div>
+{% endblock %}

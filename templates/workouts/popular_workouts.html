@@ -1,0 +1,62 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="popular-workouts-container">
+    <h1 class="popular-workouts-heading">Popular Workouts</h1>
+    <p class="popular-workouts-subheading">Check out the most liked workouts!</p>
+
+    {% if workouts %}
+    <div class="popular-workouts-grid">
+        {% for workout in workouts %}
+        <div class="popular-workout-card">
+            <div class="popular-workout-card-header">
+                <h2 class="popular-workout-title">{{ workout.title }}</h2>
+                <span class="popular-workout-likes">
+                    <i class="fa fa-heart"></i> {{ workout.like_set.count }} Likes
+                </span>
+            </div>
+
+            <div class="popular-workout-details">
+                <p class="popular-workout-description">
+                    {{ workout.description|truncatechars:120 }}
+                </p>
+                <p><strong>Difficulty:</strong> {{ workout.difficulty }}</p>
+                <p><strong>Category:</strong> {{ workout.category }}</p>
+            </div>
+
+            <div class="popular-workout-footer">
+                <a href="{% url 'workout-details' workout.pk %}" class="popular-workout-view-link">View Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-workouts-message">No workouts found.</p>
+    {% endif %}
+
+    <div class="pagination">
+            {% if is_paginated %}
+            <ul class="pagination-list">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page=1{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">First</a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Previous</a></li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <li><span class="current-page">{{ num }}</span></li>
+                    {% else %}
+                        {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+                            <li><a href="?page={{ num }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Next</a></li>
+                    <li><a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.trainer_name %}&trainer_name={{ request.GET.trainer_name }}{% endif %}">Last</a></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+</div>
+{% endblock %}

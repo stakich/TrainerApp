@@ -1,0 +1,32 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="workout-details">
+    <h1 class="workout-title">{{ workout.title }}</h1>
+    <div class="workout-info">
+        <p class="workout-trainer"><strong>Trainer:</strong> {{ workout.trainer.user.username }}</p>
+        <p class="workout-description"><strong>Description:</strong> {{ workout.description }}</p>
+        <p class="workout-difficulty"><strong>Difficulty:</strong> {{ workout.difficulty }}</p>
+        <p class="workout-category"><strong>Category:</strong> {{ workout.category }}</p>
+    </div>
+
+    <h3 class="workout-exercises-heading">Exercises</h3>
+    <ul class="workout-exercises-list">
+        {% for exercise in workout.exercises.all %}
+        <li class="workout-exercise-item">
+            <div class="workout-exercise-card">
+                <strong class="workout-exercise-name">{{ exercise.name }}</strong> :
+                <span class="workout-exercise-description">{{ exercise.description }}</span>
+                <div class="workout-exercise-sets-reps">
+                    <span class="workout-exercise-sets">Sets: {{ exercise.sets }}</span>
+                    <span class="workout-exercise-reps">Reps: {{ exercise.reps }}</span>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'profile-details' object.trainer.user.pk %}" class="back-to-trainer-link">Go to Trainer</a>
+</div>
+{% endblock %}

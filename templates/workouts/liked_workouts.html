@@ -1,0 +1,22 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="liked-workouts-container">
+    <h1 class="liked-workouts-title">Liked Workouts</h1>
+
+    {% if likes %}
+        <ul class="liked-workouts-list">
+            {% for like in likes %}
+                <li class="liked-workout-item">
+                    <h2 class="workout-title">{{ like.to_workout.title }}</h2>
+                    <p class="workout-description">{{ like.to_workout.description }}</p>
+                    <a href="{% url 'workout-details' like.to_workout_id  %}" class="view-workout-button">View Workout</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-liked-workouts-message">You have not liked any workouts yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
