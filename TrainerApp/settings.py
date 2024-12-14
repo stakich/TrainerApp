@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'TrainerApp.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "trainerapp-database",
+        "NAME": "trainerapp_database",
         "USER": "postgres",
         "PASSWORD": "030507",
         "HOST": "127.0.0.1",
