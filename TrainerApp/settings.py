@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-11^3e1mn4g@)cb@^z4=n#kh@mlyxug*qfyap#55+ntu7!d*=e&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['trainerapp-b3cmd6czfmckgwga.germanywestcentral-01.azurewebsites.net']
+ALLOWED_HOSTS = ['trainerapp-b3cmd6czfmckgwga.germanywestcentral-01.azurewebsites.net', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 ] + MY_APPS
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
