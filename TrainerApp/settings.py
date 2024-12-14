@@ -10,16 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
-from django.urls import reverse_lazy
 import os
 from decouple import config
+from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-print(os.environ)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -27,11 +24,11 @@ print(os.environ)
 SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 # django-insecure-11^3e1mn4g@)cb@^z4=n#kh@mlyxug*qfyap#55+ntu7!d*=e&
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', config('DEBUG')) == "True"
+DEBUG = os.getenv('DEBUG', config('DEBUG'))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS')).split(',')
 
-
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS').split(',')
 MY_APPS = [
     'TrainerApp.accounts',
     'TrainerApp.common',
@@ -88,11 +85,11 @@ WSGI_APPLICATION = 'TrainerApp.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME", config('DB_NAME')),
-        "USER": os.getenv("DB_USER", config('DB_USER')),
-        "PASSWORD": os.getenv("DB_PASS", config('DB_PASS')),
-        "HOST": os.getenv("DB_HOST", config('DB_HOST')),
-        "PORT": os.getenv("DB_PORT", config('DB_PORT')),
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASS"),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT"),
     }
 }
 
