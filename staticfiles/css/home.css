@@ -1,0 +1,332 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;   /* Ensure full height of viewport */
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+}
+
+/* Body styling */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.main-container {
+    flex: 1;
+}
+
+
+/* Navbar styling */
+.navbar {
+    background-color: #0044cc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar .navbar-brand img {
+    height: 70px;
+    width: auto;
+    border-radius:  50%
+}
+
+.navbar .navbar-links {
+    display: flex;
+    gap: 30px;  /* More spacing between links */
+}
+
+.navbar .navbar-links .nav-link {
+    color: white;  /* White text color */
+    text-decoration: none;  /* Remove underline */
+    font-size: 16px;  /* Slightly larger text */
+    font-weight: bold;  /* Make the font weight medium */
+    letter-spacing: 1px;  /* Small space between letters for better readability */
+    transition: color 0.3s ease, transform 0.3s ease;  /* Smooth color change on hover */
+}
+
+.navbar .navbar-links .nav-link:hover {
+    color: #ffcc00;  /* Change text color to a yellowish tone when hovered */
+    transform: scale(1.1);  /* Slightly enlarge the text when hovered */
+}
+
+.navbar .action-buttons {
+    display: flex;
+    gap: 15px;  /* Spacing between buttons */
+    align-items: center;
+}
+
+.navbar .action-buttons .btn {
+    padding: 8px 15px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.navbar .action-buttons .btn:hover {
+    background-color: #0044cc;  /* Darker blue when hovered */
+    transform: scale(1.05);  /* Slightly enlarge the button */
+}
+
+.col-9 {
+    margin-top: 30px;
+}
+
+main .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.homepage-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #0044cc;
+    text-align: center;
+}
+
+p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.searchbar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.searchbar form {
+    display: flex;
+    gap: 10px;
+}
+
+.searchbar input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.searchbar button {
+    padding: 10px 20px;
+    background-color: #0044cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.searchbar button:hover {
+    background-color: #003399;
+}
+
+/* Trainer List */
+.trainer-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.trainer-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.trainer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.trainer-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trainer-img img {
+    width: 124px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.trainer-info {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.trainer-info h3 {
+    font-size: 1.2rem;
+    color: #0044cc;
+    margin-bottom: 10px;
+}
+
+.trainer-info p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.trainer-info a {
+    text-decoration: none;
+    color: #0044cc;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.trainer-info a:hover {
+    color: #ffcc00;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #f1f1f1;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: #0044cc;
+}
+
+footer a:hover {
+    color: #ffcc00;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar .navbar-links {
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .searchbar form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .trainer-list {
+        grid-template-columns: 1fr;
+    }
+
+    .trainer-card {
+        padding: 15px;
+    }
+}
+
+.form-logout {
+    background: #0066cc;
+    border-radius: 5px;
+}
+
+.logout-button {
+    background: #0066cc;
+    font-weight: 600;
+}
+
+.searchbar label {
+    display: none;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination-list {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+}
+
+.pagination-list li {
+    display: inline;
+}
+
+.pagination-list a {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #0044cc;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.pagination-list a:hover {
+    background-color: #0044cc;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-list .current-page {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #0044cc;
+    border: 2px solid #0044cc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.trainer-list > p {
+    text-align: center;
+}

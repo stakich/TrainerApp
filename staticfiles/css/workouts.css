@@ -1,0 +1,425 @@
+/* Scoped styles for the create workout page */
+.create-workout-container form {
+    width: 90%; /* Adjusted for responsiveness */
+    max-width: 600px; /* Maximum width to prevent it from getting too wide */
+    margin: 20px auto; /* Center the form and add margin from top */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+}
+
+.create-workout-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.create-workout-container .form-row {
+    margin-bottom: 20px;
+}
+
+.create-workout-container .form-row input,
+.create-workout-container .form-row select,
+.create-workout-container .form-row textarea {
+    width: 100%; /* Ensure inputs take up full width */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.create-workout-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Full width for the submit button */
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.create-workout-container button:hover {
+    background-color: #45a049;
+}
+
+.create-workout-container button:active {
+    background-color: #388e3c;
+}
+
+.create-workout-container .form-row .errorlist {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.create-workout-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 1.1rem;
+}
+
+.add-exercise {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px dashed #007bff;
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    text-align: center;
+}
+
+.add-exercise p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.add-exercise a {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.add-exercise a:hover {
+    background-color: #0056b3;
+}
+
+.workout-details {
+    max-width: 700px;
+    margin: 2em auto;
+    padding: 2em;
+    background: #f5f7fa; /* Soft, neutral background */
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.workout-title {
+    font-size: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    font-weight: 700;
+    color: #333;
+}
+
+.workout-info p {
+    margin: 0.5em 0;
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+.workout-info strong {
+    color: #555;
+}
+
+.workout-exercises-heading {
+    margin-top: 2em;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5em;
+}
+
+.workout-exercises-list {
+    list-style-type: none;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.workout-exercise-item {
+    margin-bottom: 1em;
+}
+
+.workout-exercise-card {
+    background: #fff;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.workout-exercise-name {
+    font-weight: bold;
+    margin-right: 0.5em;
+    color: #333;
+}
+
+.workout-exercise-description {
+    font-style: italic;
+    color: #666;
+}
+
+.back-to-trainer-link {
+    display: inline-block;
+    margin-top: 2em;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+.back-to-trainer-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.edit-workout-container {
+    max-width: 500px;
+    margin: 2em auto;
+    padding: 2em;
+    background: #f5f7fa;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+.edit-workout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.edit-workout-form p {
+    margin-bottom: 1em;
+}
+
+.edit-workout-form label {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: #333;
+    display: block;
+}
+
+.edit-workout-form input[type="text"],
+.edit-workout-form input[type="email"],
+.edit-workout-form textarea,
+.edit-workout-form select {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    background: #fff;
+    transition: border 0.2s ease-in-out;
+}
+
+.edit-workout-form input[type="text"]:focus,
+.edit-workout-form input[type="email"]:focus,
+.edit-workout-form textarea:focus,
+.edit-workout-form select:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+.edit-workout-save-button {
+    padding: 0.8em 1.5em;
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: #007BFF;
+    color: #fff;
+    transition: background 0.2s ease-in-out;
+}
+
+.edit-workout-save-button:hover {
+    background: #0056b3;
+}
+
+.popular-workouts-container {
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 1em;
+    font-family: Arial, sans-serif;
+    background: #f9fafc;
+}
+
+.popular-workouts-heading {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+.popular-workouts-subheading {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 2em;
+}
+
+.popular-workouts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2em;
+    padding: 0 1em;
+}
+
+.popular-workout-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.popular-workout-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1em;
+}
+
+.popular-workout-title {
+    font-size: 2.2em;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+}
+
+.popular-workout-likes {
+    font-size: 0.9em;
+    color: #e62429;
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+}
+
+.popular-workout-likes .fa-heart {
+    color: #e62429;
+}
+
+.popular-workout-details {
+    flex-grow: 1;
+    font-size: 0.95em;
+    line-height: 1.4;
+    color: #555;
+}
+
+.popular-workout-description {
+    margin-bottom: 1em;
+}
+
+.popular-workout-footer {
+    margin-top: 1.5em;
+    text-align: right;
+}
+
+.popular-workout-view-link {
+    background: #007BFF;
+    color: #fff;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease-in-out;
+}
+
+.popular-workout-view-link:hover {
+    background: #0056b3;
+}
+
+.no-workouts-message {
+    text-align: center;
+    font-size: 1.1em;
+    color: #777;
+    margin-top: 3em;
+}
+
+.liked-workouts-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f0f4f8;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.liked-workouts-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.liked-workouts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.workout-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.workout-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.workout-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #0056b3;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.workout-title h2 {
+
+}
+
+.workout-description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.view-workout-button {
+    display: inline-block;
+    padding: 10px 25px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-workout-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.no-liked-workouts-message {
+    font-size: 18px;
+    color: #999;
+    text-align: center;
+    margin-top: 30px;
+}
