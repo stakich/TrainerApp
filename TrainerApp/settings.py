@@ -13,24 +13,24 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from django.urls import reverse_lazy
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+print(os.environ)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-11^3e1mn4g@)cb@^z4=n#kh@mlyxug*qfyap#55+ntu7!d*=e&'
-
+SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
+# django-insecure-11^3e1mn4g@)cb@^z4=n#kh@mlyxug*qfyap#55+ntu7!d*=e&
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEBUG', config('DEBUG')) == "True"
 
-ALLOWED_HOSTS = ['trainerapp-b3cmd6czfmckgwga.germanywestcentral-01.azurewebsites.net', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS')).split(',')
 
-
-# Application definition
 
 MY_APPS = [
     'TrainerApp.accounts',
@@ -40,15 +40,15 @@ MY_APPS = [
 ]
 
 INSTALLED_APPS = [
-    'rest_framework',
+                     'rest_framework',
 
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-] + MY_APPS
+                     'django.contrib.admin',
+                     'django.contrib.auth',
+                     'django.contrib.contenttypes',
+                     'django.contrib.sessions',
+                     'django.contrib.messages',
+                     'django.contrib.staticfiles',
+                 ] + MY_APPS
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -82,18 +82,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'TrainerApp.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "trainerapp_database",
-        "USER": "postgres",
-        "PASSWORD": "030507",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": os.getenv("DB_NAME", config('DB_NAME')),
+        "USER": os.getenv("DB_USER", config('DB_USER')),
+        "PASSWORD": os.getenv("DB_PASS", config('DB_PASS')),
+        "HOST": os.getenv("DB_HOST", config('DB_HOST')),
+        "PORT": os.getenv("DB_PORT", config('DB_PORT')),
     }
 }
 
@@ -115,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -126,7 +124,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
